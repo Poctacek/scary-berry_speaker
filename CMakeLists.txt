@@ -46,7 +46,9 @@ pico_enable_stdio_usb(scarry-berry_speaker 1)
 
 # Add the standard library to the build
 target_link_libraries(scarry-berry_speaker
-        pico_stdlib)
+        pico_stdlib
+        hardware_uart
+        hardware_gpio)
 
 # Add the standard include files to the build
 target_include_directories(scarry-berry_speaker PRIVATE
