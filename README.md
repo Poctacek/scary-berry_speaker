@@ -34,7 +34,29 @@ So this is what I'm gonna be working with:
 - MicroSD card (4GB)
 - Breadboard 400 pin
 - resistor 1kΩ
+  <br>
+  <br>
+
+here is an image of the components without a case :)
+
+<img src="./imgs/components-noshell.png" alt="components" width="400">
 
 ## Intention
 
 As I stated, it is mostly for my family, but also a good thing for me, since I've never worked with an RPI pico, it will be an amazing learning opportunity.
+
+## Case
+
+I modeled a case by myself for the first time in Fusion, it's not great but it will do (at least for me :D)
+
+<img src="./imgs/outside-shell.png" alt="case with components" width="400">
+<img src="./imgs/shell-no_lid.png" alt="case with open lid" width="324">
+
+## TODO
+
+Once i connect it all up here's what im hoping to do:
+
+- [ ] Put some more pictures in the README
+- [ ] Add a guide as to how to connect it all up (with all the pins and where to put what)
+- [ ] Write the python script for those who don't like C++
+- [ ] Edit the code so it doesn't only play the first track, but picks one at random
