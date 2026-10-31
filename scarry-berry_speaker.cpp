@@ -8,18 +8,39 @@
 #define UART_RX_PIN 1
 #define PIR_PIN 15
 
-void play_dfplayer(uint8_t track_number)
+void dfplayer_send_cmd(uint8_t cmd, uint8_t param1, uint8_t param2)
 {
-    uint8_t cmd[10] = {
-        0x7E, 0xFF, 0x06, 0x0F, 0x00, 0x01, track_number, (uint8_t)(0xEF - track_number), 0xEF
-    };
+    uint8_t buf[10];
+    buf[0] = 0x7E;
+    buf[1] = 0xFF;
+    buf[2] = 0x06;
+    buf[3] = cmd;
+    buf[4] = 0x00;
+    buf[5] = param1;
+    buf[6] = param2;
 
-    for (int i = 0; i < 10; i++)
-    {
-        uart_putc(UART_ID, cmd[i]);
-    }
+
+uint16_t checksum = -(buf[1] + buf[2] + buf[3] + buf[4] + buf[5] + buf[6]);
+buf[7] = (uint8_t)(checksum >> 8);
+buf[8] = (uint8_t)(checksum & 0xFF);
+buf[9] = 0xEF;
+
+uart_write_blocking(UART_ID, buf, 10);
 }
 
+void dfplayer_set_vol(uint8_t volume)
+{
+    if (volume > 30)
+    {
+        volume = 30
+    }
+    dfplayer_send_cmd(0x06, 0x00, volume);
+}
+
+void dfplayer_play(uint8_t track_number)
+{
+    dfplayer_send_cmd(0x0F, 0x01, track_number);
+}
 
 
 
